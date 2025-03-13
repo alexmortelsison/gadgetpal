@@ -32,7 +32,7 @@ export default function Navbar() {
     <nav className="bg-accent-foreground py-8 lg:py-10 md:py-4 lg:px-[330px] px-4 justify-between flex">
       <h1 className="text-3xl font-bold text-white">
         Tech
-        <span className="text-black bg-[#ffa31a] px-1 rounded-sm ml-2 font-bold">
+        <span className="text-black bg-[#ffa31a] px-1 rounded-sm font-bold">
           hub
         </span>
       </h1>

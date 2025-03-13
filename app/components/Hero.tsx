@@ -18,10 +18,10 @@ export default function Hero() {
   return (
     <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 px-4 place-items-center">
       <div className="flex flex-col text-center mt-8 md:mt-24 lg:mt-8 lg:text-start">
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+        <h1 className="text-3xl md:text-6xl font-bold tracking-tight mt-16 md:mt-0">
           Get the updated Macbook Pro.
         </h1>
-        <p className="lg:text-2xl text-xl mt-4 text-muted-foreground tracking-tight">
+        <p className="lg:text-2xl text-md mt-4 text-muted-foreground tracking-tight">
           Upgrade your workflow with the cutting-edge power of the latest
           MacBook Pro—where performance meets innovation!
         </p>

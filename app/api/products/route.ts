@@ -42,6 +42,15 @@ export async function GET() {
       quantity: 4,
       category: "Cameras",
     },
+    {
+      id: "5",
+      name: "Sony WH-1000XM5",
+      description: "ndustry-leading noise cancellation optimized to you",
+      price: 329,
+      image: "/500.avif",
+      quantity: 5,
+      category: "Accessories",
+    },
   ];
   return NextResponse.json(products);
 }

@@ -20,6 +20,10 @@ const categoryLinks = [
     name: "Cameras",
     href: "/shop/cameras",
   },
+  {
+    name: "Accessories",
+    href: "/shop/accessories",
+  },
 ];
 
 export default function CategoriesBar() {

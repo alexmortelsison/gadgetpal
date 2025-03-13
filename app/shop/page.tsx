@@ -27,7 +27,7 @@ async function getProducts(): Promise<Product[]> {
 export default async function ShopPage() {
   const products = await getProducts();
   return (
-    <div className="max-w-7xl mx-auto flex flex-col px-4 lg:px-0">
+    <div className="max-w-7xl mx-auto flex flex-col px-4 lg:px-0 min-h-screen lg:pt-16">
       <p className="lg:text-3xl text-2xl mb-4 flex justify-center lg:justify-start">
         Featured Products
       </p>
@@ -36,7 +36,7 @@ export default async function ShopPage() {
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
-      <div className="mb-8 flex lg:ml-[900px] ">
+      <div className="mb-8 flex lg:ml-[1000px] ">
         <Pagination>
           <PaginationContent>
             <PaginationItem>

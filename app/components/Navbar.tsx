@@ -4,11 +4,12 @@ import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Separator } from "@/components/ui/separator";
 import { CircleUserRound, HeartIcon, ShoppingCart } from "lucide-react";
-import { getServerSession } from "next-auth";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -62,21 +63,54 @@ export default function Navbar() {
         ))}
         <div className="text-white items-center flex space-x-4 ml-12">
           {session ? (
-            <Image
-              src={session.user?.image || ""}
-              alt="user avatar"
-              width={20}
-              height={20}
-            />
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <div className="cursor-pointer">
+                  <Image
+                    src={session.user?.image || ""}
+                    alt="user avatar"
+                    width={30}
+                    height={30}
+                    className="rounded-full object-cover"
+                  />
+                </div>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem className="flex flex-col hover:bg-transparent">
+                  <div className="flex flex-col items-start">
+                    <p className="font-bold">{session.user?.name}</p>
+                    <p>{session.user?.email}</p>
+                  </div>
+                </DropdownMenuItem>
+                <Separator />
+                <DropdownMenuItem className="flex justify-center items-center">
+                  <Button
+                    variant={"ghost"}
+                    onClick={() => signOut()}
+                    className="hover:bg-transparent cursor-pointer"
+                  >
+                    Sign out
+                  </Button>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           ) : (
             <DropdownMenu>
-              <DropdownMenuTrigger>
-                <CircleUserRound className="cursor-pointer" />
+              <DropdownMenuTrigger asChild>
+                <div>
+                  <CircleUserRound className="cursor-pointer" />
+                </div>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="flex items-center justify-center">
-                <Button variant={"ghost"} onClick={() => signIn("google")}>
-                  Sign in
-                </Button>
+                <DropdownMenuItem>
+                  <Button
+                    variant={"ghost"}
+                    onClick={() => signIn("google")}
+                    className="hover:bg-transparent cursor-pointer"
+                  >
+                    Sign in
+                  </Button>
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           )}

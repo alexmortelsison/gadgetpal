@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const categoryLinks = [
   {
-    name: "Computers & Laptops",
+    name: "Computers",
     href: "/shop/computers",
   },
   {
@@ -38,7 +38,7 @@ export default function CategoriesBar() {
         <Input
           type="text"
           className="w-[300px] placeholder:text-muted-foreground"
-          placeholder="Search product..."
+          placeholder="Search product"
         />
       </div>
     </div>

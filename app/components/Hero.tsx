@@ -21,9 +21,9 @@ export default function Hero() {
         <h1 className="text-3xl md:text-6xl font-bold tracking-tight mt-16 md:mt-0">
           Get the updated Macbook Pro.
         </h1>
-        <p className="lg:text-2xl text-md mt-4 text-muted-foreground tracking-tight">
+        <p className="lg:text-xl text-md lg:mt-2 mt-3 text-muted-foreground tracking-tight">
           Upgrade your workflow with the cutting-edge power of the latest
-          MacBook Pro—where performance meets innovation!
+          MacBook Pro—where performance meets innovation.
         </p>
         <div className="lg:inline-flex gap-x-4 mt-8 hidden">
           <Button className="rounded-sm cursor-pointer">Buy Now</Button>

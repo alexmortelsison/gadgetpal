@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import CategoriesBar from "./components/CategoriesBar";
 import SessionWrapper from "./components/SessionWrapper";
 import { Toaster } from "sonner";
+import ProviderWrapper from "./components/ProviderWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,11 +32,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SessionWrapper>
-          <Navbar />
-          <CategoriesBar />
-          {children}
-        </SessionWrapper>
+        <ProviderWrapper>
+          <SessionWrapper>
+            <Navbar />
+            <CategoriesBar />
+            {children}
+          </SessionWrapper>
+        </ProviderWrapper>
         <Toaster position="top-center" />
       </body>
     </html>

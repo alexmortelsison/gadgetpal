@@ -1,3 +1,12 @@
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 import ProductCard from "../components/ProductCard";
 
 interface Product {
@@ -18,10 +27,33 @@ async function getProducts(): Promise<Product[]> {
 export default async function ShopPage() {
   const products = await getProducts();
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto place-items-center mb-24">
-      {products.map((product: Product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+    <div className="max-w-7xl mx-auto">
+      <p className="text-3xl mb-4 flex justify-center lg:justify-start">
+        Featured Products
+      </p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 place-items-center mb-4">
+        {products.map((product: Product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+      <div className="mb-8">
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious href="#" />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">1</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationNext href="#" />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+      </div>
     </div>
   );
 }

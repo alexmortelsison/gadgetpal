@@ -8,11 +8,13 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Separator } from "@/components/ui/separator";
+import { RootState } from "@/store/store";
 import { CircleUserRound, HeartIcon, ShoppingCart } from "lucide-react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSelector } from "react-redux";
 
 const navlinks = [
   {
@@ -39,6 +41,7 @@ const navlinks = [
 export default function Navbar() {
   const { data: session } = useSession();
   const pathName = usePathname();
+  const cartItems = useSelector((state: RootState) => state.cart.items);
   return (
     <nav className="bg-accent-foreground py-8 lg:py-10 md:py-4 lg:px-[330px] px-4 justify-between flex">
       <h1 className="text-3xl font-bold text-white">
@@ -114,9 +117,17 @@ export default function Navbar() {
               </DropdownMenuContent>
             </DropdownMenu>
           )}
-
-          <HeartIcon />
-          <ShoppingCart />
+          <div className="flex space-x-4 relative">
+            <HeartIcon />
+            <Link href="/cart">
+              <ShoppingCart />
+              {cartItems.length > 0 && (
+                <span className="absolute -top-2 -right-3 bg-red-600 rounded-full px-2 text-sm">
+                  {cartItems.length}
+                </span>
+              )}
+            </Link>
+          </div>
         </div>
       </div>
     </nav>

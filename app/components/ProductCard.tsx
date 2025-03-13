@@ -3,6 +3,9 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { addToCart } from "@/store/features/cartSlice";
+import { toast } from "sonner";
 
 interface ProductProps {
   id: string;
@@ -16,6 +19,10 @@ interface ProductProps {
 
 export default function ProductCard({ product }: { product: ProductProps }) {
   const dispatch = useDispatch();
+  const handleAddToCart = () => {
+    dispatch(addToCart({ ...product, quantity: 1 }));
+    toast.success("Successfully added to cart");
+  };
   return (
     <div className="border rounded-md h-[500px] px-8 relative shadow-md">
       <div className="flex justify-end cursor-pointer absolute right-4 top-4">
@@ -39,6 +46,9 @@ export default function ProductCard({ product }: { product: ProductProps }) {
           </p>
         </div>
         <p className="text-sm">${product.price}</p>
+      </div>
+      <div className="mt-8">
+        <Button onClick={handleAddToCart}>Add to cart</Button>
       </div>
     </div>
   );

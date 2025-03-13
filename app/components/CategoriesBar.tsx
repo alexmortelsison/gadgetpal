@@ -37,7 +37,7 @@ export default function CategoriesBar() {
         ))}
         <Input
           type="text"
-          className="w-[300px] placeholder:text-muted-foreground"
+          className="w-[300px] placeholder:text-muted-foreground placeholder:text-sm"
           placeholder="Search product"
         />
       </div>

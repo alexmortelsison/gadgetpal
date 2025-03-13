@@ -36,7 +36,7 @@ export default function Hero() {
           alt="hero"
           width={300}
           height={300}
-          className="lg:w-full lg:ml-0 object-cover"
+          className="lg:w-full w-[90%] lg:ml-0 object-cover"
         />
         <div className="space-x-4">
           {images.map((_, index) => (

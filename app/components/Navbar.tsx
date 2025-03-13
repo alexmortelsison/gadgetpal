@@ -44,12 +44,14 @@ export default function Navbar() {
   const cartItems = useSelector((state: RootState) => state.cart.items);
   return (
     <nav className="bg-accent-foreground py-8 lg:py-10 md:py-4 lg:px-[330px] px-4 justify-between flex">
-      <h1 className="text-3xl font-bold text-white">
-        Tech
-        <span className="text-black bg-[#ffa31a] px-1 rounded-sm font-bold">
-          hub
-        </span>
-      </h1>
+      <Link href={"/"}>
+        <h1 className="text-3xl font-bold text-white">
+          Tech
+          <span className="text-black bg-[#ffa31a] px-1 rounded-sm font-bold">
+            hub
+          </span>
+        </h1>
+      </Link>
       <div className="space-x-4 text-muted flex items-center">
         {navlinks.map((link) => (
           <Link

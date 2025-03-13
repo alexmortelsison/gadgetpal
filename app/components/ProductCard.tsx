@@ -24,7 +24,7 @@ export default function ProductCard({ product }: { product: ProductProps }) {
     toast.success("Successfully added to cart");
   };
   return (
-    <div className="border rounded-md h-[500px] px-8 relative shadow-md">
+    <div className="border rounded-md h-[500px] px-8 relative shadow-md flex flex-col w-full">
       <div className="flex justify-end cursor-pointer absolute right-4 top-4">
         <AiOutlineHeart />
       </div>
@@ -47,7 +47,7 @@ export default function ProductCard({ product }: { product: ProductProps }) {
         </div>
         <p className="text-sm">${product.price}</p>
       </div>
-      <div className="mt-8">
+      <div className="mt-8 flex ">
         <Button onClick={handleAddToCart}>Add to cart</Button>
       </div>
     </div>

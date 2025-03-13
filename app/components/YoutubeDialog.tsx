@@ -24,7 +24,7 @@ export default function YoutubeDialog() {
           src="/mb.mp4"
           autoPlay={true}
           loop
-          className="w-full h-auto max-w-[80vh]"
+          className="w-full h-auto max-w-[100vh] rounded-lg"
         />
       </DialogContent>
     </Dialog>

@@ -1,4 +1,4 @@
-import ProductCard from "@/app/components/ProductCard";
+import TrendingProductCard from "@/app/components/TrendingProductCard";
 
 interface Product {
   id: string;
@@ -27,7 +27,7 @@ export default async function TrendingProductsPage() {
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 place-items-center mb-4">
         {trendingProducts.map((product: Product) => (
-          <ProductCard key={product.id} product={product} />
+          <TrendingProductCard key={product.id} product={product} />
         ))}
       </div>
     </div>

@@ -18,7 +18,11 @@ interface ProductProps {
   quantity: number;
 }
 
-export default function ProductCard({ product }: { product: ProductProps }) {
+export default function TrendingProductCard({
+  product,
+}: {
+  product: ProductProps;
+}) {
   const dispatch = useDispatch();
   const handleAddToCart = () => {
     dispatch(addToCart({ ...product, quantity: 1 }));
@@ -30,7 +34,7 @@ export default function ProductCard({ product }: { product: ProductProps }) {
         <AiOutlineHeart />
       </div>
       <div className="h-[300px] items-center flex pt-24">
-        <Link href={`/shop/featuredProducts/${product.id}`}>
+        <Link href={`/shop/trendingProducts/${product.id}`}>
           <Image
             src={product.image}
             alt={product.name}
@@ -42,7 +46,7 @@ export default function ProductCard({ product }: { product: ProductProps }) {
       </div>
       <div className="mt-16 items-center flex justify-between">
         <div className="flex flex-col">
-          <Link href={`/shop/featuredProducts/${product.id}`}>
+          <Link href={`/shop/trendingProducts/${product.id}`}>
             <p className="font-bold line-clamp-1 text-sm">{product.name}</p>
           </Link>
           <p className="text-sm">

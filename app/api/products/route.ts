@@ -52,5 +52,6 @@ export async function GET() {
       category: "Accessories",
     },
   ];
+
   return NextResponse.json(products);
 }

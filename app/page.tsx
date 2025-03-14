@@ -1,4 +1,5 @@
 import Hero from "./components/Hero";
+import TrendingProductsPage from "./shop/trendingProducts/page";
 import ShopPage from "./shop/page";
 
 export default function Home() {
@@ -7,6 +8,7 @@ export default function Home() {
       <Hero />
       <div className="lg:mt-48 mt-40">
         <ShopPage />
+        <TrendingProductsPage />
       </div>
     </div>
   );

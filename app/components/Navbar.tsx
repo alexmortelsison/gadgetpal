@@ -23,7 +23,7 @@ const navlinks = [
   },
   {
     name: "Trending",
-    href: "/trending",
+    href: "/shop/trendingProducts",
   },
   {
     name: "Cart",

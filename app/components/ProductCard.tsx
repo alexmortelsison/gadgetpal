@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { addToCart } from "@/store/features/cartSlice";
 import { toast } from "sonner";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 interface ProductProps {
   id: string;
@@ -19,6 +20,7 @@ interface ProductProps {
 }
 
 export default function ProductCard({ product }: { product: ProductProps }) {
+  const { data: session } = useSession();
   const dispatch = useDispatch();
   const handleAddToCart = () => {
     dispatch(addToCart({ ...product, quantity: 1 }));
@@ -53,7 +55,11 @@ export default function ProductCard({ product }: { product: ProductProps }) {
         <p className="text-sm">${product.price}</p>
       </div>
       <div className="mt-8">
-        <Button onClick={handleAddToCart} className="cursor-pointer">
+        <Button
+          onClick={handleAddToCart}
+          className="cursor-pointer"
+          disabled={!session}
+        >
           Add to cart
         </Button>
       </div>

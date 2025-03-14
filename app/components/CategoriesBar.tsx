@@ -1,6 +1,7 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 const categoryLinks = [
@@ -27,6 +28,7 @@ const categoryLinks = [
 ];
 
 export default function CategoriesBar() {
+  const { data: session } = useSession();
   return (
     <div className="bg-accent py-4 flex">
       <div className="flex space-x-4 items-center max-w-7xl mx-auto">
@@ -43,6 +45,7 @@ export default function CategoriesBar() {
           type="text"
           className="w-[300px] placeholder:text-muted-foreground placeholder:text-sm"
           placeholder="Search product"
+          disabled={!session}
         />
       </div>
     </div>

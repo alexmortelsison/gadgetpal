@@ -8,6 +8,9 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import ProductCard from "../components/ProductCard";
+import { getServerSession } from "next-auth";
+import { Button } from "@/components/ui/button";
+import { signIn } from "next-auth/react";
 
 interface Product {
   id: string;
@@ -26,6 +29,7 @@ async function getProducts(): Promise<Product[]> {
 
 export default async function ShopPage() {
   const products = await getProducts();
+
   return (
     <div className="max-w-7xl mx-auto flex flex-col px-4 lg:px-0 min-h-screen lg:pt-16">
       <p className="lg:text-3xl text-2xl mb-4 flex justify-center lg:justify-start">

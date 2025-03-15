@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { Stripe } from "stripe";
+import Stripe from "stripe";
 
 interface Product {
   id: string;
@@ -11,7 +11,11 @@ interface Product {
   quantity: number;
 }
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
+if (!process.env.STRIPE_SECRET_KEY) {
+  throw new Error("Missing STRIPE_SECRET_KEY in environment variables");
+}
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {});
 
 export async function POST(req: Request) {
   try {
@@ -19,6 +23,7 @@ export async function POST(req: Request) {
     if (!cartItems || cartItems.length === 0) {
       return NextResponse.json({ error: "No items found." }, { status: 400 });
     }
+
     const lineItems = cartItems.map((item) => {
       let imageUrl = item.image || "http://via.placeholder.com/150";
       if (!imageUrl.startsWith("http")) {
@@ -45,6 +50,7 @@ export async function POST(req: Request) {
       success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success`,
       cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/cart`,
     });
+
     return NextResponse.json({ url: session.url });
   } catch (error) {
     console.error("Stripe checkout error:", error);

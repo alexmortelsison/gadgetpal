@@ -48,9 +48,16 @@ export default function Hero({ product }: { product: ProductProps }) {
         <div className="lg:inline-flex gap-x-4 mt-8 hidden">
           <div className="rounded-sm cursor-pointer">
             {session ? (
-              <Button onClick={handleAddToCart}>Buy now</Button>
+              <Button onClick={handleAddToCart} className="cursor-pointer">
+                Buy now
+              </Button>
             ) : (
-              <Button onClick={() => signIn("google")}>Log in</Button>
+              <Button
+                onClick={() => signIn("google")}
+                className="cursor-pointer"
+              >
+                Log in
+              </Button>
             )}
           </div>
           <YoutubeDialog />

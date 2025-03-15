@@ -1,3 +1,9 @@
+"use client";
+
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, AppDispatch } from "@/store/store"; // ✅ Import AppDispatch
+import { fetchProducts } from "@/store/features/productSlice";
 import Hero from "./components/Hero";
 import TrendingProductsPage from "./shop/trendingProducts/page";
 import ShopPage from "./shop/page";
@@ -13,6 +19,15 @@ const defaultProduct = {
 };
 
 export default function Home() {
+  const dispatch = useDispatch<AppDispatch>();
+  const productStatus = useSelector((state: RootState) => state.product.status);
+
+  useEffect(() => {
+    if (productStatus === "idle") {
+      dispatch(fetchProducts());
+    }
+  }, [dispatch, productStatus]);
+
   return (
     <div>
       <Hero product={defaultProduct} />

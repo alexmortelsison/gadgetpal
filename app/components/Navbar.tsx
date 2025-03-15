@@ -22,8 +22,8 @@ const navlinks = [
     href: "/",
   },
   {
-    name: "Trending",
-    href: "/shop/trendingProducts",
+    name: "All Products",
+    href: "/shop",
   },
   {
     name: "Cart",
@@ -120,7 +120,9 @@ export default function Navbar() {
             </DropdownMenu>
           )}
           <div className="flex space-x-4 relative">
-            <HeartIcon />
+            <Link href={"/wishlist"}>
+              <HeartIcon />
+            </Link>
             <Link href="/cart">
               <ShoppingCart />
               {cartItems.length > 0 && (

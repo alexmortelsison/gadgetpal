@@ -1,6 +1,7 @@
 "use client";
 import { AiOutlineHeart } from "react-icons/ai";
-import { useDispatch } from "react-redux";
+import { AiFillHeart } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -8,6 +9,8 @@ import { addToCart } from "@/store/features/cartSlice";
 import { toast } from "sonner";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { RootState } from "@/store/store";
+import { toggleWishlist } from "@/store/features/wishlistSlice";
 
 interface ProductProps {
   id: string;
@@ -21,15 +24,20 @@ interface ProductProps {
 
 export default function ProductCard({ product }: { product: ProductProps }) {
   const { data: session } = useSession();
+  const wishlist = useSelector((state: RootState) => state.wishlist.items);
   const dispatch = useDispatch();
   const handleAddToCart = () => {
     dispatch(addToCart({ ...product, quantity: 1 }));
     toast.success("Successfully added to cart");
   };
+  const isWishListed = wishlist.includes(product.id);
   return (
     <div className="border rounded-md h-[500px] px-8 relative shadow-md">
-      <div className="flex justify-end cursor-pointer absolute right-4 top-4">
-        <AiOutlineHeart />
+      <div
+        className="flex justify-end cursor-pointer absolute right-4 top-4"
+        onClick={() => dispatch(toggleWishlist(product.id))}
+      >
+        {isWishListed ? <AiFillHeart /> : <AiOutlineHeart />}
       </div>
       <div className="h-[300px] items-center flex pt-24">
         <Link href={`/shop/featuredProducts/${product.id}`}>

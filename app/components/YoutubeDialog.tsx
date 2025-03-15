@@ -9,7 +9,7 @@ import {
 export default function YoutubeDialog() {
   return (
     <Dialog>
-      <DialogTrigger>
+      <DialogTrigger asChild>
         <Button
           variant={"outline"}
           className="rounded-sm bg-white text-accent-foreground  hover:bg-white cursor-pointer"

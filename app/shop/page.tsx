@@ -1,62 +1,39 @@
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
+"use client";
+
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState, AppDispatch } from "@/store/store";
+import { fetchProducts } from "@/store/features/productSlice";
 import ProductCard from "../components/ProductCard";
-import { getServerSession } from "next-auth";
-import { Button } from "@/components/ui/button";
-import { signIn } from "next-auth/react";
 
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  quantity: number;
-}
+export default function ShopPage() {
+  console.log("🔥 ShopPage re-rendered");
 
-async function getProducts(): Promise<Product[]> {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/products`);
-  return res.json();
-}
+  const dispatch = useDispatch<AppDispatch>();
+  const { filteredProducts, status } = useSelector(
+    (state: RootState) => state.product
+  );
 
-export default async function ShopPage() {
-  const products = await getProducts();
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
+  if (status === "loading") return <p>Loading...</p>;
+  if (status === "failed") return <p>Error loading products.</p>;
 
   return (
     <div className="max-w-7xl mx-auto flex flex-col px-4 lg:px-0 min-h-screen lg:pt-16">
       <p className="lg:text-3xl text-2xl mb-4 flex justify-center lg:justify-start">
-        Featured Products
+        All Products
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 place-items-center mb-4">
-        {products.map((product: Product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
-      <div className="mb-8 flex lg:ml-[1000px] ">
-        <Pagination>
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious href="#" />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">1</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationEllipsis />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationNext href="#" />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))
+        ) : (
+          <p className="text-gray-500">No products found.</p>
+        )}
       </div>
     </div>
   );

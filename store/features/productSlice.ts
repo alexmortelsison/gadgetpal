@@ -59,5 +59,6 @@ const productSlice = createSlice({
   },
 });
 
+// ✅ Ensure filterProducts is exported
 export const { filterProducts } = productSlice.actions;
 export default productSlice.reducer;

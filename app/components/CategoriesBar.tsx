@@ -3,7 +3,7 @@
 import { Input } from "@/components/ui/input";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { setFilteredProducts } from "@/store/features/productSlice";
+import { filterProducts } from "@/store/features/productSlice"; // ✅ Correct function name
 
 export default function CategoriesBar() {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ export default function CategoriesBar() {
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchQuery(value);
-    dispatch(setFilteredProducts(value)); // ✅ Dispatch search query
+    dispatch(filterProducts(value)); // ✅ Dispatch search query
   };
 
   return (
